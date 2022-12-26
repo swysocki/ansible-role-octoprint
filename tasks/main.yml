@@ -1,0 +1,11 @@
+---
+- name: Run Debian based tasks
+  ansible.builtin.include_tasks: debian.yml
+  when: ansible_distribution == "Debian" or ansible_distribution == "Ubuntu"
+
+- name: Create SystemD Service File for Octoprint
+  ansible.builtin.template:
+    src: octoprint.service.j2
+    dest: /etc/systemd/system/octoprint.service
+  become: true
+  notify: restart octoprint

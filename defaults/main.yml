@@ -1,0 +1,3 @@
+---
+# defaults file for octoprint_install
+octoprint_port: 5000

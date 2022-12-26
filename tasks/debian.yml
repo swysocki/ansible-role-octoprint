@@ -1,0 +1,23 @@
+---
+- name: Install common tools
+  ansible.builtin.package:
+    name: "{{ item }}"
+  loop:
+    - python3
+    - python3-pip
+    - python3-virtualenv
+  become: true
+
+# Installs OctoPrint as the user that logged in with Ansible
+- name: Install OctoPrint
+  ansible.builtin.pip:
+    name: OctoPrint
+    virtualenv: "{{ ansible_env.HOME }}/OctoPrint"
+
+# Adds the user that logged in with Ansible to tty groups
+- name: Add user to groups for TTY access
+  ansible.builtin.user:
+    append: true # yikes, don't change this!
+    name: "{{ ansible_user }}"
+    groups: tty,dialout
+  become: true

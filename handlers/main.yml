@@ -1,0 +1,9 @@
+---
+# handlers file for octoprint_install
+- name: restart octoprint
+  ansible.builtin.systemd:
+    name: octoprint
+    state: restarted
+    daemon_reload: true
+    enabled: true
+  become: true

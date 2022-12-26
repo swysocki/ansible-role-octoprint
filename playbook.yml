@@ -1,0 +1,5 @@
+---
+- name: install OctoPrint on servers
+  hosts: all
+  roles:
+    - octoprint_install
