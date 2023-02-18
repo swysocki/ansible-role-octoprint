@@ -1,0 +1,18 @@
+---
+- name: Install ustreamer package
+  ansible.builtin.package:
+    name: ustreamer
+
+- name: Add user to video group
+  ansible.builtin.user:
+    append: true
+    name: "{{ ansible_user }}"
+    groups: video
+  become: true
+
+- name: Create SystemD Service File for uStreamer
+  ansible.builtin.template:
+    src: ustreamer.service.j2
+    dest: /etc/systemd/system/ustreamer.service
+  become: true
+  notify: restart ustreamer

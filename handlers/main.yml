@@ -7,3 +7,11 @@
     daemon_reload: true
     enabled: true
   become: true
+
+- name: restart ustreamer
+  ansible.builtin.systemd:
+    name: ustreamer
+    state: restarted
+    daemon_reload: true
+    enabled: true
+  become: true
