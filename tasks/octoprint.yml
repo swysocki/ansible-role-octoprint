@@ -6,21 +6,34 @@
     - python3
     - python3-pip
     - python3-virtualenv
+    - acl
   become: true
 
-# Installs OctoPrint as the user that logged in with Ansible
+- name: Create OctoPrint user
+  ansible.builtin.user:
+    name: "{{ octoprint_user }}"
+    comment: "OctoPrint Service Account"
+    create_home: false
+    shell: /sbin/nologin
+    groups: tty,dialout
+    append: true
+  become: true
+
+- name: OctoPrint directories
+  ansible.builtin.file:
+    path: /opt/octoprint
+    state: directory
+    owner: "{{ octoprint_user }}"
+    group: octoprint
+  become: true
+
 - name: Install OctoPrint
   ansible.builtin.pip:
-    name: OctoPrint
-    virtualenv: "{{ ansible_env.HOME }}/OctoPrint"
-
-# Adds the user that logged in with Ansible to tty groups
-- name: Add user to groups for TTY access
-  ansible.builtin.user:
-    append: true # yikes, don't change this!
-    name: "{{ ansible_user }}"
-    groups: tty,dialout
+    name: "OctoPrint=={{ octoprint_version }}"
+    virtualenv: "/opt/octoprint/venv"
   become: true
+  become_user: "{{ octoprint_user }}"
+  notify: restart octoprint
 
 - name: Create SystemD Service File for Octoprint
   ansible.builtin.template:

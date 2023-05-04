@@ -4,8 +4,8 @@ After=network.online.target
 Wants=network.online.target
 
 [Service]
-User={{ansible_user}}
-ExecStart={{ansible_env.HOME}}/OctoPrint/bin/octoprint serve --config={{ansible_env.HOME}}/.octoprint/config.yaml --port={{octoprint_port}}
+User={{octoprint_user}}
+ExecStart=/opt/octoprint/venv/bin/octoprint serve --config=/opt/octoprint/config.yaml --port={{octoprint_port}}
 
 [Install]
 WantedBy=multi-user.target

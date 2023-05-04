@@ -3,3 +3,4 @@
 octoprint_port: 5000
 ustreamer_port: 9000
 ustreamer_dev: "/dev/video0"
+octoprint_user: "octoprint"

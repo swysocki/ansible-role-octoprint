@@ -6,7 +6,7 @@
 - name: Add user to video group
   ansible.builtin.user:
     append: true
-    name: "{{ ansible_user }}"
+    name: "{{ octoprint_user }}"
     groups: video
   become: true
 
