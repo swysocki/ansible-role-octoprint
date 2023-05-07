@@ -1,38 +1,48 @@
-Role Name
+Ansible role : OctoPrint
 =========
 
-A brief description of the role goes here.
+Roles to install and configure the [OctoPrint](https://octoprint.org) 3D printing application on
+Debian-based systems.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+No external requirements needed.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+| Variable                | Required | Default | Choices                   | Comments                                 |
+|-------------------------|----------|---------|---------------------------|------------------------------------------|
+| octoprint_port          | no       | 5000    |                           | OctoPrint port                           |
+| ustreamer_port          | no       | 9000    |                           | uStreamer port                           |
+| ustreamer_device        | no       | "/dev/video0"/ |                    | uStreamer video device path              |
+| octoprint_user          | no       | "octoprint" |                       | OctoPrint account name                   |
+| octoprint_version       | no       | 1.8.7   |                           | OctoPrint version                        |
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+No external dependencies.
 
 Example Playbook
 ----------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```yaml
+- name: Install OctoPrint on target hosts
+  hosts: all
+  roles:
+    - octoprint_install
+```
 
 License
 -------
 
-BSD
+MIT License
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Scott Wysocki - [http://swysocki.com](http://swysocki.com)
