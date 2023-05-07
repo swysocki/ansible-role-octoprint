@@ -16,7 +16,7 @@ Role Variables
 |-------------------------|----------|---------|---------------------------|------------------------------------------|
 | octoprint_port          | no       | 5000    |                           | OctoPrint port                           |
 | ustreamer_port          | no       | 9000    |                           | uStreamer port                           |
-| ustreamer_device        | no       | "/dev/video0"/ |                    | uStreamer video device path              |
+| ustreamer_device        | no       | "/dev/video0" |                     | uStreamer video device path              |
 | octoprint_user          | no       | "octoprint" |                       | OctoPrint account name                   |
 | octoprint_version       | no       | 1.8.7   |                           | OctoPrint version                        |
 
